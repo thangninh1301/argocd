@@ -1,0 +1,21 @@
+{{- $fullname := include "iam-user-management.fullname" . -}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "iam-user-management.fullname" . }}-svc
+  labels:
+    app: {{ include "iam-user-management.name" . }}
+    chart: {{ include "iam-user-management.chart" . }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+    version: "{{ $.Values.commitSha }}"
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+    - port: {{ .Values.service.port }}
+      protocol: TCP
+      targetPort: {{ .Values.service.targetPort }}
+  selector:
+    app: {{ include "iam-user-management.fullname" . }}
+  type: {{ .Values.service.type }}

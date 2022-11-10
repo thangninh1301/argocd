@@ -1,0 +1,55 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backendsvc-ingress
+  namespace: backendsvc
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+    nginx.ingress.kubernetes.io/enable-rewrite-log: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  tls:
+  - hosts:
+    - skythread.io
+    secretName: demoapi-cert
+  rules:
+  - host: demoapi.skythread.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: errhandle-service
+            port:
+              number: 80
+        path: /errhandle(/|$)(.*)
+        pathType: Prefix
+      - backend:
+          service:
+            name: data-tokenization-service
+            port:
+              number: 80
+        path: /tokenization(/|$)(.*)
+        pathType: Prefix
+      - backend:
+          service:
+            name: aadesh-service
+            port:
+              number: 80
+        path: /aadesh(/|$)(.*)
+        pathType: Prefix
+      - backend:
+          service:
+            name: authensvc-service
+            port:
+              number: 80
+        path: /authensvc(/|$)(.*)
+        pathType: Prefix
+      - backend:
+          service:
+            name: uatui-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
