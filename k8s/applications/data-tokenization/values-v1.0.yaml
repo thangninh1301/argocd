@@ -1,7 +1,7 @@
 # Default values for iot-app.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-namespace: bali-stag
+namespace: backendsvc
 replicaCount: 1
 commitSha: a47f1551fe4396416882e3d6051ff5f8f815f364
 gitCommitMessage: 'Anh Tran commit to staging'
