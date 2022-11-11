@@ -53,3 +53,10 @@ spec:
               number: 80
         path: /
         pathType: Prefix
+      - backend:
+          service:
+            name: hlf-middleware-service
+            port:
+              number: 7071
+        path: /
+        pathType: Prefix

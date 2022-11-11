@@ -1,0 +1,73 @@
+# Default values for iot-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+namespace: backendsvc
+replicaCount: 1
+commitSha: a47f1551fe4396416882e3d6051ff5f8f815f364
+gitCommitMessage: 'Anh Tran commit to staging'
+gitDeployUser: "Anh Tran"
+
+image:
+  repository: skythreaddemobackend.azurecr.io/hlf-middleware
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: 21449
+
+ports:
+  containerPort: 80
+
+service:
+  name: hlf-middleware-service
+  type: NodePort
+  port: 7071
+  targetPort: 7071
+
+nameOverride: ""
+
+fullnameOverride: "hlf-middleware"
+
+livenessProbe:
+  path: /healthz
+  initialDelaySeconds: 5
+
+readinessProbe:
+  path: /healthz
+  initialDelaySeconds: 5
+
+#env:
+#  secretName: iam-user-management-secret-env
+#  mountPath: /usr/src/app/.env
+
+#argocdHooks:
+#  - name: presync
+#    type: PreSync
+#    image: pstauffer/curl:latest
+#    command: ['/bin/sh']
+#    args:
+#      - '-c'
+#      - 'sh /tmp/send.sh'
+#    volumeMounts:
+#      - name: command-config
+#        mountPath: /tmp/send.sh
+#        subPath: send.sh
+#    volumes:
+#      - name: command-config
+#        configMap:
+#          name: argocd-hook
+#          defaultMode: 0755
+#  - name: postsync
+#    type: PostSync
+#    image: pstauffer/curl:latest
+#    command: ['/bin/sh']
+#    args:
+#      - '-c'
+#      - 'sh /tmp/send.sh'
+#    volumeMounts:
+#      - name: command-config
+#        mountPath: /tmp/send.sh
+#        subPath: send.sh
+#    volumes:
+#      - name: command-config
+#        configMap:
+#          name: argocd-hook
+#          defaultMode: 0755
