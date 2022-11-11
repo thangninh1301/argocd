@@ -1,4 +1,4 @@
-{{- $fullname := include "iam-user-management.fullname" . -}}
+{{- $fullname := include "skythread-aadesh.fullname" . -}}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -37,18 +37,10 @@ spec:
                   app: {{ $fullname }}
               topologyKey: failure-domain.beta.kubernetes.io/zone
             weight: 100
-      volumes:
-        - name: iam-user-management-env
-          secret:
-            secretName: {{ .Values.env.secretName }}
       containers:
       - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: {{ $fullname }}
-        volumeMounts:
-        - name: iam-user-management-env
-          mountPath: {{ .Values.env.mountPath }}
-          subPath: .env
         ports:
         - containerPort: {{ .Values.ports.containerPort }}
           protocol: TCP

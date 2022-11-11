@@ -4,10 +4,10 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ template "iam-user-management.name" $ }}-argocd-{{ $hook.name }}"
+  name: "{{ template "skythread-aadesh.name" $ }}-argocd-{{ $hook.name }}"
   labels:
-    app: {{ template "iam-user-management.name" $ }}
-    chart: {{ template "iam-user-management.chart" $ }}
+    app: {{ template "skythread-aadesh.name" $ }}
+    chart: {{ template "skythread-aadesh.chart" $ }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}
     version: "{{ $.Values.commitSha }}"
@@ -24,7 +24,7 @@ spec:
           image: "{{ $hook.image }}"
           env:
             - name: APP_NAME
-              value: "{{ template "iam-user-management.fullname" $ }}"
+              value: "{{ template "skythread-aadesh.fullname" $ }}"
             - name: APP_VERSION
               value: "{{ $.Values.commitSha }}"
             - name: GIT_COMMIT_MESSAGE

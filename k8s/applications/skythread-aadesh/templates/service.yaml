@@ -1,12 +1,12 @@
-{{- $fullname := include "iam-user-management.fullname" . -}}
+{{- $fullname := include "skythread-aadesh.fullname" . -}}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "iam-user-management.fullname" . }}-svc
+  name: {{ include "skythread-aadesh.fullname" . }}-svc
   labels:
-    app: {{ include "iam-user-management.name" . }}
-    chart: {{ include "iam-user-management.chart" . }}
+    app: {{ include "skythread-aadesh.name" . }}
+    chart: {{ include "skythread-aadesh.chart" . }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}
     version: "{{ $.Values.commitSha }}"
@@ -17,5 +17,5 @@ spec:
       protocol: TCP
       targetPort: {{ .Values.service.targetPort }}
   selector:
-    app: {{ include "iam-user-management.fullname" . }}
+    app: {{ include "skythread-aadesh.fullname" . }}
   type: {{ .Values.service.type }}
