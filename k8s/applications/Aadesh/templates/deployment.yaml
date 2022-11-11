@@ -53,17 +53,3 @@ spec:
         - containerPort: {{ .Values.ports.containerPort }}
           protocol: TCP
           name: httpport
-        livenessProbe:
-          httpGet:
-            path: {{ .Values.livenessProbe.path}}
-            port: httpport
-          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-          periodSeconds: 3
-          timeoutSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: {{ .Values.readinessProbe.path }}
-            port: httpport
-          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
-          periodSeconds: 3
-          timeoutSeconds: 10
