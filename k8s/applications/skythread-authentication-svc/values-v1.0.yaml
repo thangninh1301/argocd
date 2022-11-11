@@ -3,15 +3,15 @@
 # Declare variables to be passed into your templates.
 namespace: skythread-demo
 replicaCount: 1
-commitSha: a1c8cbde9561e2b6c703808cb03b4b22d7fec838
-gitCommitMessage: 'Microsoft.VisualStudio.Services.TFS commit to azure-pipelines-demo-aks'
+commitSha: cade7a976b9f996b307e97f39672e3aa0216efbb
+gitCommitMessage: 'Ninh Doan Thang (FHN.PMO) commit to azure-pipelines-demo-aks'
 gitDeployUser: "Anh Tran"
 
 image:
   repository: skythreaddemobackend.azurecr.io/skythread-authentication-svc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: azure-pipelines-demo-aks.3675
+  tag: azure-pipelines-demo-aks.3677
 
 ports:
   containerPort: 80
