@@ -8,7 +8,7 @@ gitCommitMessage: 'Anh Tran commit to staging'
 gitDeployUser: "Anh Tran"
 
 image:
-  repository: skythreaddemobackend.azurecr.io/hlf-middleware
+  repository: skythreaddemobackend.azurecr.io/skythread-hlf-middleware
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: v1-cre

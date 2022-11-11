@@ -8,7 +8,7 @@ gitCommitMessage: 'Microsoft.VisualStudio.Services.TFS commit to azure-pipelines
 gitDeployUser: "Anh Tran"
 
 image:
-  repository: skythreaddemobackend.azurecr.io/error-handling
+  repository: skythreaddemobackend.azurecr.io/skythread-error-handling
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: azure-pipelines-demo-aks.3667
