@@ -8,7 +8,7 @@ gitCommitMessage: 'Anh Tran commit to staging'
 gitDeployUser: "Anh Tran"
 
 image:
-  repository: skythreaddemobackend.azurecr.io/aadesh
+  repository: skythreaddemobackend.azurecr.io/authentication-svc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: v23
@@ -17,14 +17,14 @@ ports:
   containerPort: 80
 
 service:
-  name: skythread-aadesh
+  name: skythread-authentication-svc
   type: NodePort
   port: 80
   targetPort: 80
 
 nameOverride: ""
 
-fullnameOverride: "skythread-aadesh"
+fullnameOverride: "skythread-authentication-svc"
 
 #livenessProbe:
 #  path: /healthz

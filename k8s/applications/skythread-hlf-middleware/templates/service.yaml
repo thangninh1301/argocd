@@ -1,0 +1,21 @@
+{{- $fullname := include "skythread-hlf-middleware.fullname" . -}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "skythread-hlf-middleware.fullname" . }}-svc
+  labels:
+    app: {{ include "skythread-hlf-middleware.name" . }}
+    chart: {{ include "skythread-hlf-middleware.chart" . }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+    version: "{{ $.Values.commitSha }}"
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+    - port: {{ .Values.service.port }}
+      protocol: TCP
+      targetPort: {{ .Values.service.targetPort }}
+  selector:
+    app: {{ include "skythread-hlf-middleware.fullname" . }}
+  type: {{ .Values.service.type }}

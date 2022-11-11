@@ -1,0 +1,51 @@
+{{- if .Values.argocdHooks }}
+{{- range $index, $hook := .Values.argocdHooks }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ template "skythread-hlf-middleware.name" $ }}-argocd-{{ $hook.name }}"
+  labels:
+    app: {{ template "skythread-hlf-middleware.name" $ }}
+    chart: {{ template "skythread-hlf-middleware.chart" $ }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+    version: "{{ $.Values.commitSha }}"
+  namespace: "{{ $.Values.namespace }}"
+  annotations:
+    argocd.argoproj.io/hook: "{{ $hook.type }}"
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  ttlSecondsAfterFinished: 30
+  template:
+    spec:
+      containers:
+        - name: "{{ $.Chart.Name }}-argocd-{{ $hook.name }}"
+          image: "{{ $hook.image }}"
+          env:
+            - name: APP_NAME
+              value: "{{ template "skythread-hlf-middleware.fullname" $ }}"
+            - name: APP_VERSION
+              value: "{{ $.Values.commitSha }}"
+            - name: GIT_COMMIT_MESSAGE
+              value: "{{ $.Values.gitCommitMessage }}"
+            - name: DEPLOY_USER
+              value: "{{ $.Values.gitDeployUser }}"
+            - name: ACTION
+              value: "{{ $hook.type }}"
+          command: {{ $hook.command }}
+        {{- if $hook.args }}
+          args: 
+{{ toYaml $hook.args | indent 12 }}
+        {{- end }}
+        {{- with $hook.volumeMounts }}
+          volumeMounts:
+{{ toYaml . | indent 12 }}
+        {{- end }}
+      restartPolicy: Never
+    {{- with $hook.volumes }}
+      volumes:
+{{ toYaml . | indent 8 }}
+    {{- end }}    
+{{- end }}
+{{- end }}

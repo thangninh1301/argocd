@@ -1,4 +1,4 @@
-{{- $fullname := include "skythread-aadesh.fullname" . -}}
+{{- $fullname := include "skythread-authentication-svc.fullname" . -}}
 ---
 apiVersion: apps/v1
 kind: Deployment

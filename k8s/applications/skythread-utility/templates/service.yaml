@@ -1,0 +1,21 @@
+{{- $fullname := include "skythread-utility.fullname" . -}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "skythread-utility.fullname" . }}-svc
+  labels:
+    app: {{ include "skythread-utility.name" . }}
+    chart: {{ include "skythread-utility.chart" . }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+    version: "{{ $.Values.commitSha }}"
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+    - port: {{ .Values.service.port }}
+      protocol: TCP
+      targetPort: {{ .Values.service.targetPort }}
+  selector:
+    app: {{ include "skythread-utility.fullname" . }}
+  type: {{ .Values.service.type }}

@@ -1,0 +1,21 @@
+{{- $fullname := include "skythread-error-handling.fullname" . -}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "skythread-error-handling.fullname" . }}-svc
+  labels:
+    app: {{ include "skythread-error-handling.name" . }}
+    chart: {{ include "skythread-error-handling.chart" . }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+    version: "{{ $.Values.commitSha }}"
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+    - port: {{ .Values.service.port }}
+      protocol: TCP
+      targetPort: {{ .Values.service.targetPort }}
+  selector:
+    app: {{ include "skythread-error-handling.fullname" . }}
+  type: {{ .Values.service.type }}

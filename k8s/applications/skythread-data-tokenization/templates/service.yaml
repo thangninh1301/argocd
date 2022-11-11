@@ -1,0 +1,21 @@
+{{- $fullname := include "skythread-data-tokenization.fullname" . -}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "skythread-data-tokenization.fullname" . }}-svc
+  labels:
+    app: {{ include "skythread-data-tokenization.name" . }}
+    chart: {{ include "skythread-data-tokenization.chart" . }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+    version: "{{ $.Values.commitSha }}"
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+    - port: {{ .Values.service.port }}
+      protocol: TCP
+      targetPort: {{ .Values.service.targetPort }}
+  selector:
+    app: {{ include "skythread-data-tokenization.fullname" . }}
+  type: {{ .Values.service.type }}
