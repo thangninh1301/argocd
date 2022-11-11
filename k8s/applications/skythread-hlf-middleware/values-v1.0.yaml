@@ -19,8 +19,8 @@ ports:
 service:
   name: skythread-hlf-middleware
   type: NodePort
-  port: 80
-  targetPort: 80
+  port: 7071
+  targetPort: 7071
 
 nameOverride: ""
 
