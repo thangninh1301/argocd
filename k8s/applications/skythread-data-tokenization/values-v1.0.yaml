@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 namespace: skythread-demo
 replicaCount: 1
-commitSha: 6ab2e3f2da2885ae079497c0e94de402ab308f09
+commitSha: 3d0009f48ca51cd57c8ac09e025b3bdc3309b5a3
 gitCommitMessage: 'GitHub commit to merge'
 gitDeployUser: "Anh Tran"
 
@@ -11,7 +11,7 @@ image:
   repository: skythreaddemobackend.azurecr.io/skythread-data-tokenization
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: merge.3706
+  tag: merge.3716
 
 ports:
   containerPort: 80
