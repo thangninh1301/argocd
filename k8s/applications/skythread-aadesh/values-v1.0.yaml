@@ -11,7 +11,7 @@ image:
   repository: skythreaddemobackend.azurecr.io/skythread-aadesh
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: v888
+  tag: v889
 
 ports:
   containerPort: 80
