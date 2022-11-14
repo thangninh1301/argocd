@@ -3,15 +3,15 @@
 # Declare variables to be passed into your templates.
 namespace: skythread-demo
 replicaCount: 1
-commitSha: 3d0009f48ca51cd57c8ac09e025b3bdc3309b5a3
-gitCommitMessage: 'GitHub commit to merge'
+commitSha: 00cb5fc0c1bf060433023f19715ff8c61ee677e0
+gitCommitMessage: 'Microsoft.VisualStudio.Services.TFS commit to azure-pipelines-demo-aks'
 gitDeployUser: "Anh Tran"
 
 image:
   repository: skythreaddemobackend.azurecr.io/skythread-data-tokenization
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: merge.3716
+  tag: azure-pipelines-demo-aks.3740
 
 ports:
   containerPort: 80
