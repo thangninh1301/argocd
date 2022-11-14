@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 namespace: skythread-demo
 replicaCount: 1
-commitSha: 6957520f04338c9adb11ce1e676269c128b68d1c
+commitSha: cc624ff376e721b33f207ff3bf12b1cc3920937a
 gitCommitMessage: 'Microsoft.VisualStudio.Services.TFS commit to merge'
 gitDeployUser: "Anh Tran"
 
@@ -11,7 +11,7 @@ image:
   repository: skythreaddemobackend.azurecr.io/skythread-authentication-svc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: merge.3712
+  tag: merge.3721
 
 ports:
   containerPort: 80
